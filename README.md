@@ -179,7 +179,7 @@ git init
 # git remote add origin https://github.com/AinaKIKISAGBE/flaskapi.git
 source env.config
 source keys.config
-# git remote add origin https://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@github.com/AinaKIKISAGBE/venv_scoring.git
+# git remote add origin https://your_token_github@github.com/AinaKIKISAGBE/venv_scoring.git
 git remote add origin https://${GITHUB_TOKEN}@github.com/AinaKIKISAGBE/flaskapi.git
 # git remote remove origin
 # mettre à jour l'url sans suprimer 
