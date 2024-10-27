@@ -258,12 +258,21 @@ En résumé, Nginx est principalement un serveur web et un reverse proxy, tandis
 
 
 ####################################################
+docker network create -d macvlan --subnet=192.168.1.0/24 --gateway=192.168.1.1 -o parent=eth0 macvlan_network_aina
+docker run -d --name flask_api_server --network macvlan_network_aina --ip 192.168.1.100 my_image
+docker run -d --name flask_api_server --network macvlan_network_aina --ip 192.168.1.100 debian:latest bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
+
+
+docker run -d -p 8080:80 -p 5000:5000 -p 2222:22 --name flask_api_server --network macvlan_network_aina --ip 192.168.1.100 debian:latest bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
 
 # 1. Tirer l'image de base (debian:slim)
 docker pull debian:latest
 
 # 2. Lancer le conteneur avec nginx sur le port 80
-docker run -d -p 8080:80 -p 5000:5000 --name flask_api_server debian:latest bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
+docker run -d -p 8080:80 -p 5000:5000 -p 2222:22 --name flask_api_server debian:latest bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
+192.168.1.18 -p 2222
+192.168.1.18:8080
+
 
 # 3. Vérifier le conteneur en cours d'exécution
 docker ps
