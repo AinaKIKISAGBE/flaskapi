@@ -256,3 +256,39 @@ Dans un déploiement typique d'une application web Python, Nginx est utilisé co
 Conclusion
 En résumé, Nginx est principalement un serveur web et un reverse proxy, tandis que Gunicorn est un serveur d'applications qui exécute des applications Python. Ensemble, ils offrent une solution robuste pour le déploiement d'applications web modernes
 
+
+####################################################
+
+# 1. Tirer l'image de base (debian:slim)
+docker pull debian:latest
+
+# 2. Lancer le conteneur avec nginx sur le port 80
+docker run -d -p 8080:80 -p 5000:5000 --name flask_api_server debian:latest bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
+
+# 3. Vérifier le conteneur en cours d'exécution
+docker ps
+
+# 4. Accéder à http://localhost
+
+# 5. Arrêter le conteneur (optionnel)
+docker stop flask_api_server
+
+# 6. Supprimer le conteneur (optionnel)
+docker rm flask_api_server
+
+
+
+# Mettez à jour les paquets
+apt update
+
+# Installez sudo
+apt install -y sudo
+
+# Créer un utilisateur nommé "aina"
+RUN useradd -ms /bin/bash aina
+
+# Changer l’utilisateur courant à "aina"
+USER aina
+
+
+
