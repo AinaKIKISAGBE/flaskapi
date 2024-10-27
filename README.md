@@ -285,10 +285,10 @@ apt update
 apt install -y sudo
 
 # Créer un utilisateur nommé "aina"
-RUN useradd -ms /bin/bash aina
+# RUN useradd -ms /bin/bash aina
 
 # Changer l’utilisateur courant à "aina"
-USER aina
+# USER aina
 
 
 
